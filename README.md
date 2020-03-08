@@ -13,7 +13,7 @@ To get the source running you need to intsall the [Panda3D](https://github.com/N
 ### Installing Pip Dependenices
 The next part is to get our Dependenices. To get them open a Command Prompt Window inside of the Toontown Stride folder and run
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 ### Running the Game
