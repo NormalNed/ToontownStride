@@ -30,7 +30,7 @@ Now Open `dev/win32` and open all Batch Scripts
 
 ### Getting Python
 
-The First step to get this Source running is compiling Python. The Python we use is located [here](https://github.com/NormalNed) but feel free to use the one in your package manager (should be **python2**)
+The First step to get this Source running is compiling Python. The Python we use is located [here](https://github.com/NormalNed/python) but feel free to use the one in your package manager (should be **python2**)
 
 ### Installing Pip
 
@@ -47,7 +47,7 @@ pip2.7 install -r requirements.txt
 ```
 
 ### Installing "our" Panda 3D
-We use a version of Astron Panda3D that is upstream code frrom the main repo. To set it up follow these instructions
+We use a version of Astron Panda3D that is upstream code from the main repo. To set it up follow these instructions
 
 ```bash
 git clone https://github.com/NormalNed/panda3d.git

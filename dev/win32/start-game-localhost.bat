@@ -7,11 +7,9 @@ set /P PYTHON_PATH=<PYTHON_PATH
 
 rem Get the user input:
 set /P ttsUsername="Username: "
-set /P serverIP="Server IP: "
-
 rem Export the environment variables:
 set TTS_PLAYCOOKIE=%ttsUsername%
-set TTS_GAMESERVER=%serverIP%
+set TTS_GAMESERVER=127.0.0.1
 
 cls
 
