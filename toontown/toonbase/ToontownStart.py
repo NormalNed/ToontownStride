@@ -12,7 +12,7 @@ sys.path.append(
     os.path.abspath(
         os.path.join(
             os.path.dirname(__file__),
-            "../../dependencies"
+            "../.."
         )
     )
 )
@@ -36,11 +36,11 @@ if __debug__:
     import sys
     from direct.stdpy import threading
 
-    loadPrcFile('dependencies/config/general.prc')
-    loadPrcFile('dependencies/config/release/dev.prc')
+    loadPrcFile('config/general.prc')
+    loadPrcFile('config/release/dev.prc')
 
-    if os.path.isfile('dependencies/config/local.prc'):
-        loadPrcFile('dependencies/config/local.prc')
+    if os.path.isfile('config/local.prc'):
+        loadPrcFile('config/local.prc')
 
     defaultText = ""
 
@@ -177,6 +177,7 @@ cr.music = music
 del music
 base.initNametagGlobals()
 base.setFrameRateMeter(settings['fpsMeter'])
+base.setFrameRateMeter('init')
 base.cr = cr
 loader.endBulkLoad('init')
 from otp.friends import FriendManager
