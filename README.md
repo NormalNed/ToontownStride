@@ -3,30 +3,32 @@
 # Toontown Stride
 September build of Toontown Stride, that just works.
 
+# ❓ What is Toontown Stride
+Toontown Stride is a Community Focused Toontown Server. We are going to keep up this tradition finishing and polishing Toontown Stride for the community.
 # 🔨 Setting Up
 
+Support is currently being worked on for MacOS and Non Arch Based Linux Distros
 ## 💻 Windows
 
 ### Installing Panda
-To get the source running you need to intsall the [Panda3D](https://github.com/NormalNed/ToontownStride/blob/master/Panda3D-1.11.0.exe) located in this repo.
+To get the source running you need to install the [Panda3D](https://github.com/NormalNed/ToontownStride/blob/master/Panda3D-1.11.0.exe) located in this repo.
 
-### Installing Pip Dependenices
-The next part is to get our Dependenices. To get them open a Command Prompt Window inside of the Toontown Stride folder and run
+### Installing Pip Dependencies
+The next part is to get our Dependencies. To get them open a Command Prompt Window inside of the Toontown Stride folder and run
 ```bash
-python -m pip install -r requirements.txt
+ppython -m pip install -r requirements.txt
 ```
 
 ### Running the Game
-Now Open `dev/win32` and open all Batch Scripts
-
+Now run the [Start.bat](Start.bat) file to launch the game.
 
 ## 🐧 Linux
-### Gathering Basic Dependenices
+### Gathering Basic Dependencies
 ##### Arch / Manjaro
-```yay -S xorg-server  libgl  python  openssl  libjpeg  libpng  freetype2  gtk2  libtiff  nvidia-cg-toolkit  openal  zlib  libxxf86dga  assimp  bullet  eigen  ffmpeg  fmodex  libxcursor  libxrandr  git  opencv  libgles  libegl```
+```yay -S xorg-server  xterm  libgl  python  openssl  libjpeg  libpng  freetype2  gtk2  libtiff  nvidia-cg-toolkit  openal  zlib  libxxf86dga  assimp  bullet  eigen  ffmpeg  fmodex  libxcursor  libxrandr  git  opencv  libgles  libegl```
 
 ##### Debian / Ubuntu / Linux Mint
-```sudo apt-get install build-essential pkg-config fakeroot python-dev libpng-dev libjpeg-dev libtiff-dev zlib1g-dev libssl-dev libx11-dev libgl1-mesa-dev libxrandr-dev libxxf86dga-dev libxcursor-dev bison flex libfreetype6-dev libvorbis-dev libeigen3-dev libopenal-dev libode-dev libbullet-dev nvidia-cg-toolkit libgtk2.0-dev libassimp-dev libopenexr-dev```
+```sudo apt-get install build-essential xterm pkg-config fakeroot python-dev libpng-dev libjpeg-dev libtiff-dev zlib1g-dev libssl-dev libx11-dev libgl1-mesa-dev libxrandr-dev libxxf86dga-dev libxcursor-dev bison flex libfreetype6-dev libvorbis-dev libeigen3-dev libopenal-dev libode-dev libbullet-dev nvidia-cg-toolkit libgtk2.0-dev libassimp-dev libopenexr-dev```
 
 ### Getting Python
 
@@ -40,8 +42,8 @@ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py
 ```
 
-### Installing Pip Dependenices
-The next part is to get our Dependenices. Open a Terminal inside of the Stride Project and follow these instructions below.
+### Installing Pip Dependencies
+The next part is to get our Dependencies. Open a Terminal inside of the Stride Project and follow these instructions below.
 ```bash
 pip2.7 install -r requirements.txt
 ```
@@ -57,5 +59,11 @@ sudo python2 makepanda/installpanda.py
 sudo ldconfig
 ```
 
-#### Running the Game
-Now Open `dev/linux` and run all the Shell Scripts
+### Running the Game
+Now run the [Start.sh](Start.sh) file to launch the game.
+
+# 📝 Notice
+
+This repository contains code derived from the [BigNed repository.](https://github.com/BigNed/ToontownStride).
+
+BigNed is operated by [these contriubutors](https://github.com/BigNed/ToontownStride/graphs/contributors).
