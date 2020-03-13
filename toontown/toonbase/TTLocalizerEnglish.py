@@ -4487,7 +4487,7 @@ PetshopGoHomeText = 'Would you like to go to your estate to play with your new D
 NameShopNameMaster = 'NameMasterEnglish.txt'
 NameShopContinueSubmission = 'Continue Submission'
 NameShopChooseAnother = 'Choose Another Name'
-NameShopToonCouncil = 'The Toon Council\nwill review your\nname.  ' + 'Review may\ntake a few days.\nWhile you wait\nyour name will be\n '
+NameShopToonCouncil = 'The Toon Council\naccepted your name.  \n' + 'Please re-log to\nget access to\nyour new name\nafter toon creation.'
 PleaseTypeName = 'Please type your name:'
 AllNewNames = 'All new names must be\napproved by the Toon Council.'
 NameMessages = 'Be creative, and remember:\nno NPC names, please.'
@@ -10028,5 +10028,9 @@ Blacklist = [
  "xxx"
 ]
 
+#Version Label
 CopyrightOn = 'on'
 CopyrightOff = 'off'
+
+#Boss Cog Stunned Text
+BossCogDoStunned = 'Stunned!'

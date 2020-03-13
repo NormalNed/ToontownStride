@@ -667,6 +667,7 @@ class DistributedBossbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
             if toon:
                 toon.takeOffSuit()
 
+        self.bossHealthBar.initialize(self.bossMaxDamage - self.bossDamage, self.bossMaxDamage)
         self.bossClub.reparentTo(self.rightHandJoint)
         self.generateHealthBar()
         self.updateHealthBar()
@@ -675,6 +676,8 @@ class DistributedBossbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
     def exitBattleFour(self):
         DistributedBossCog.DistributedBossCog.exitBattleFour(self)
         self.phaseFourMusic.stop()
+        self.updateHealthBar()
+        self.bossHealthBar.update(self.bossMaxDamage - bossDamage, self.bossMaxDamage)
 
     def d_hitBoss(self, bossDamage):
         self.sendUpdate('hitBoss', [bossDamage])
@@ -683,6 +686,7 @@ class DistributedBossbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         self.sendUpdate('ballHitBoss', [bossDamage])
 
     def setBossDamage(self, bossDamage, recoverRate, recoverStartTime):
+        self.bossHealthBar.update(self.bossMaxDamage - bossDamage, self.bossMaxDamage)
         if bossDamage > self.bossDamage:
             delta = bossDamage - self.bossDamage
             self.flashRed()
@@ -713,6 +717,7 @@ class DistributedBossbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         intervalName = 'VictoryMovie'
         seq = Sequence(self.makeVictoryMovie(), Func(self.__continueVictory), name=intervalName)
         seq.start()
+        self.bossHealthBar.deinitialize()
         self.storeInterval(seq, intervalName)
         base.playMusic(self.phaseFourMusic, looping=1, volume=0.9)
 

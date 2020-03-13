@@ -468,6 +468,7 @@ class DistributedCashbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
             Func(self.__showToons))
         return Sequence(Func(base.camera.reparentTo, self), Func(base.camera.setPosHpr, 0, -27, 25, 0, -18, 0), track)
 
+
     def moveToonsToBattleThreePos(self, toons):
         track = Parallel()
         for i in xrange(len(toons)):
@@ -568,6 +569,7 @@ class DistributedCashbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         return
 
     def setBossDamage(self, bossDamage):
+        self.bossHealthBar.update(self.bossMaxDamage - bossDamage, self.bossMaxDamage)
         if bossDamage > self.bossDamage:
             delta = bossDamage - self.bossDamage
             self.flashRed()
@@ -578,6 +580,7 @@ class DistributedCashbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
 
     def setRewardId(self, rewardId):
         self.rewardId = rewardId
+        self.updateHealthBar()
 
     def d_applyReward(self):
         self.sendUpdate('applyReward', [])
@@ -765,6 +768,8 @@ class DistributedCashbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         self.updateHealthBar()
         base.playMusic(self.battleThreeMusic, looping=1, volume=0.9)
         taskMgr.add(self.__doPhysics, self.uniqueName('physics'), priority=25)
+        self.bossHealthBar.initialize()
+
 
     def exitBattleThree(self):
         DistributedBossCog.DistributedBossCog.exitBattleThree(self)
@@ -801,6 +806,7 @@ class DistributedCashbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         seq = Sequence(self.makeBossFleeMovie(), Func(self.__continueVictory), name=intervalName)
         seq.start()
         self.storeInterval(seq, intervalName)
+        self.bossHealthBar.deinitialize()
         if self.oldState != 'BattleThree':
             base.playMusic(self.battleThreeMusic, looping=1, volume=0.9)
 

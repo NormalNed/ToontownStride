@@ -796,7 +796,7 @@ class SetNameTypedFSM(AvatarOperationFSM):
                     self.csm.air.dbId,
                     self.avId,
                     self.csm.air.dclassesByName['DistributedToonUD'],
-                    {'setWishNameState': ('PENDING',),
+                    {'WishNameState': ('APPROVED',),
                      'setWishName': (self.name,)})
             else:
                 status = False

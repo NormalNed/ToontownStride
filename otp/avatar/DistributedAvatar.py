@@ -10,6 +10,7 @@ from otp.ai.MagicWordGlobal import *
 from otp.otpbase import OTPGlobals
 from toontown.battle.BattleProps import globalPropPool
 from otp.nametag.Nametag import Nametag
+from toontown.toonbase import TTLocalizer
 
 
 class DistributedAvatar(DistributedActor, Avatar):
@@ -162,7 +163,7 @@ class DistributedAvatar(DistributedActor, Avatar):
 
         return Avatar.setName(self, name)
 
-    def showHpText(self, number, bonus = 0, scale = 1):
+    def showHpText(self, number, bonus = 0, scale = 1, isBoss=0):
         if self.HpTextEnabled and not self.ghostMode:
             if number != 0:
                 if self.hpText:
@@ -194,15 +195,27 @@ class DistributedAvatar(DistributedActor, Avatar):
                     g = 0.9
                     b = 0
                     a = 1
-                self.HpTextGenerator.setTextColor(r, g, b, a)
-                self.hpTextNode = self.HpTextGenerator.generate()
-                self.hpText = self.attachNewNode(self.hpTextNode)
-                self.hpText.setScale(scale)
-                self.hpText.setBillboardPointEye()
-                self.hpText.setBin('fixed', 100)
-                self.hpText.setPos(0, 0, self.height / 2)
-                seq = Sequence(self.hpText.posInterval(1.0, Point3(0, 0, self.height + 1.5), blendType='easeOut'), Wait(0.85), self.hpText.colorInterval(0.1, Vec4(r, g, b, 0)), Func(self.hideHpText))
-                seq.start()
+            elif number == 0 and isBoss==1:
+                if self.hpText:
+                    self.hideHpText()
+                self.HpTextGenerator.setFont(OTPGlobals.getSignFont())
+                self.HpTextGenerator.setText(TTLocalizer.BossCogDoStunned)
+                self.HpTextGenerator.clearShadow()
+                self.HpTextGenerator.setAlign(TextNode.ACenter)
+                r = 1.0
+                g = 0.5
+                b = 0
+                a = 1
+            self.HpTextGenerator.setTextColor(r, g, b, a)
+            self.hpTextNode = self.HpTextGenerator.generate()
+            self.hpText = self.attachNewNode(self.hpTextNode)
+            self.hpText.setScale(scale)
+            self.hpText.setBillboardPointEye()
+            self.hpText.setBin('fixed', 100)
+            self.hpText.setPos(0, 0, self.height / 2)
+            self.hpTextSeq = Sequence(self.hpText.posInterval(1.0, Point3(0, 0, self.height + 1.5), blendType='easeOut'), Wait(0.85), self.hpText.colorInterval(0.1, Vec4(r, g, b, 0)), Func(self.hideHpText))
+            self.hpTextSeq.start()
+
 
     def showHpString(self, text, duration = 0.85, scale = 0.7):
         if self.HpTextEnabled and not self.ghostMode:

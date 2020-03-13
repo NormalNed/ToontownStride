@@ -185,6 +185,7 @@ class DistributedSellbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         self.doobers = doobers
 
     def setBossDamage(self, bossDamage, recoverRate, timestamp):
+        self.bossHealthBar.update(self.bossMaxDamage - bossDamage, self.bossMaxDamage)
         recoverStartTime = globalClockDelta.networkToLocalTime(timestamp)
         self.bossDamage = bossDamage
         self.recoverRate = recoverRate
@@ -858,6 +859,7 @@ class DistributedSellbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
     def __onToBattleThree(self, elapsed):
         self.doneBarrier('PrepareBattleThree')
         taskMgr.doMethodLater(1, self.__showWaitingMessage, self.uniqueName('WaitingMessage'))
+        self.bossHealthBar.initialize(self.bossMaxDamage - self.bossDamage, self.bossMaxDamage)
 
     def exitPrepareBattleThree(self):
         self.show()
@@ -979,6 +981,7 @@ class DistributedSellbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         self.forward = 1
         self.setChatAbsolute(TTLocalizer.VPDeathTaunt, CFSpeech | CFTimeout)
         self.doAnimate('Fb_fall', now=1)
+        self.bossHealthBar.deinitialize()
         self.acceptOnce(self.animDoneEvent, self.__continueVictory)
         base.playMusic(self.battleThreeMusic, looping=1, volume=0.9, time=self.battleThreeMusicTime)
 

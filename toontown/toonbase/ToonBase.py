@@ -158,6 +158,7 @@ class ToonBase(OTPBase.OTPBase):
 
         self.filters = CommonFilters(self.win, self.cam)
         self.wantCogInterface = settings.get('cogInterface', True)
+        self.aspect2d.setAntialias(AntialiasAttrib.MMultisample)
 
     def openMainWindow(self, *args, **kw):
         result = OTPBase.OTPBase.openMainWindow(self, *args, **kw)
